@@ -1,0 +1,12 @@
+---
+# defaults file for ansible-zabbix-agent-docker
+zabbix_version: 4.4.5
+zabbix_server: zabbix_server
+zabbix_agent_apps:
+- name: zabbix_agent
+  home: /opt/zabbix_agent
+  dc_template: dc_zabbix_agent.j2
+  env:
+    ZABBIX_IMAGE_VERSION: "centos-{{ zabbix_version }}"
+    ZBX_HOSTNAME: "{{ inventory_hostname }}"
+    ZBX_SERVER_HOST: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"

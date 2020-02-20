@@ -1,0 +1,11 @@
+---
+# tasks file for ansible-zabbix-agent-docker
+
+- include_tasks: install.yml
+
+- include_tasks: compose.yml
+  with_items: "{{ zabbix_agent_apps }}"
+  loop_control:
+    loop_var: app
+
+- include_tasks: add_host.yml

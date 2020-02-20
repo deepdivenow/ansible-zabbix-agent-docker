@@ -1,0 +1,23 @@
+version: '3.0'
+services:
+  'zabbix_agent':
+    container_name: zabbix_agent
+    hostname: zabbix_agent
+    image: zabbix/zabbix-agent:${ZABBIX_IMAGE_VERSION}
+    restart: on-failure
+    ports:
+      - 10050:10050
+
+#    networks:
+#      - app_network
+
+    env_file:
+    - .env
+    volumes:
+      - ./var:/var/lib/zabbix
+      - /etc/zabbix/zabbix_agentd.d:/etc/zabbix/zabbix_agentd.d:ro
+
+#networks:
+#    app_network:
+#        external:
+#            name: zbx_network

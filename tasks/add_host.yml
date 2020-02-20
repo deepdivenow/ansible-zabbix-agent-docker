@@ -1,0 +1,37 @@
+
+- name: Create a new host or update an existing host's info
+  zabbix_host:
+    server_url: "{{ zabbix_web_url }}"
+    login_user: "{{ zabbix_web_admin_user }}"
+    login_password: "{{ zabbix_web_admin_pass }}"
+    host_name: "{{ inventory_hostname }}"
+    visible_name: Zabbix-Server
+    description: My ExampleHost Description
+    host_groups:
+      - Linux servers
+#       - Example group2
+    link_templates:
+      - Template App Zabbix Server
+      - Template OS Linux by Zabbix agent
+    status: enabled
+    state: present
+#     inventory_mode: manual
+#     inventory_zabbix:
+#       tag: "{{ your_tag }}"
+#       alias: "{{ your_alias }}"
+#       notes: "Special Informations: {{ your_informations | default('None') }}"
+#       location: "{{ your_location }}"
+#       site_rack: "{{ your_site_rack }}"
+#       os: "{{ your_os }}"
+#       hardware: "{{ your_hardware }}"
+#     ipmi_authtype: 2
+#     ipmi_privilege: 4
+#     ipmi_username: username
+#     ipmi_password: password
+    interfaces:
+      - type: 1
+        main: 1
+        useip: 1
+        ip: 192.168.1.110
+        dns: ""
+        port: 10050

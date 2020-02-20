@@ -1,0 +1,19 @@
+---
+# tasks file for ansible-zabbix-agent-docker
+- name: Install docker-compose
+  yum:
+    name: [docker-compose, python-setuptools]
+
+# - name: Create a network zbx_network
+#   docker_network:
+#     name: zbx_network
+#     ipam_config:
+#       - subnet: 172.4.27.0/24
+
+- name: "Install pip"
+  easy_install:
+    name=pip
+    state=present
+
+- name: "Install zabbix-py dependency"
+  pip: name=zabbix-api
